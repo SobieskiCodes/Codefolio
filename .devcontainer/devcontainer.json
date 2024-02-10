@@ -10,7 +10,7 @@
 	"portsAttributes": {"3000": {"label": "React App"}, "8000": {"label": "FastAPI"}},
 	"shutdownAction": "stopCompose",
 	"onCreateCommand": "",
-	"postCreateCommand": "python ./backend/presetup.py $CODESPACE_NAME $GITHUB_TOKEN && gh codespace ports visibility 3000:'public' -c $CODESPACE_NAME && gh codespace ports visibility 8000:'public' -c $CODESPACE_NAME",
+	"postCreateCommand": "python ./backend/presetup.py $CODESPACE_NAME $GITHUB_TOKEN",
 	"customizations": {
 	  "vscode": {
 		"settings": {
