@@ -1,9 +1,12 @@
 import shutil
 import os
 
-# Define your source and destination file paths
+current_dir = os.path.dirname(os.path.realpath(__file__))
+parent_dir = os.path.dirname(current_dir)
+
+# Define the source and destination file paths
 source_file = '/workspaces/.codespaces/shared/.env'
-destination_dir = '/workspaces/ClassworkApp/frontend'
+destination_dir = f'{parent_dir}/frontend'
 
 # Construct the destination file path
 destination_file = os.path.join(destination_dir, os.path.basename(source_file))
