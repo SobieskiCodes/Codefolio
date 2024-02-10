@@ -1,0 +1,18 @@
+{
+    "version": "v1.0",
+    "card_balance": null,
+    "store_config": {
+        "store_name": "The Pseudo Store",
+        "store_opening_hour": 0,
+        "store_closing_hour": 24,
+        "inventory_item_min_size": 1,
+        "inventory_item_max_size": 10,
+        "low_stock_threshold": 0.25
+    },
+    "jokes": [
+        "Why did the coffee file a police report? It got mugged!",
+        "What's a coffee's favorite karaoke song? Hit Me With Your Best Shot!",
+        "Why are all the coffee jokes always stale? Because they are all re-used grounds!",
+        "How does a tech guy drink coffee? He installs Java!"
+    ]
+}

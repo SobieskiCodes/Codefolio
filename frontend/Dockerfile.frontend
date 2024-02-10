@@ -1,0 +1,30 @@
+# Use a Node.js base image
+FROM node:latest
+
+# Set the working directory in the container to /frontend
+WORKDIR /frontend
+
+# Remove the node_modules and package-lock.json if they exist
+RUN rm -rf node_modules package{,-lock}.json
+
+# Install dependencies
+RUN npm create vite@4.2.0 . -- --template react-ts --force
+RUN npm init -y
+RUN npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion --force
+RUN npm install
+
+# Copy the rest of the frontend files into the working directory
+COPY . .
+
+
+# Expose the port that the dev server will run on
+EXPOSE 3000
+
+# Use the ARGs as ENVs if you need them at runtime
+RUN npm run build
+
+# Start the application
+#CMD ["npm", "run", "dev"]
+RUN npm install -g serve
+
+CMD ["serve", "-s", "dist"]
