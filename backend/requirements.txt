@@ -1,4 +1,4 @@
 fastapi
 SQLAlchemy
 uvicorn
-load_dotenv
+docker-compose

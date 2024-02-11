@@ -13,6 +13,9 @@ ENV VITE_CODESPACE_NAME=$CODESPACE_NAME
 # Copy package.json and package-lock.json (if exists)
 COPY package*.json ./
 
+# Install serve to serve the static files
+RUN npm install -g serve
+
 # Install dependencies
 RUN npm install
 
@@ -25,8 +28,6 @@ EXPOSE 3000
 # Build the application
 RUN npm run build
 
-# Install serve to serve the static files
-RUN npm install -g serve
-
 # Start the application with serve
-CMD ["serve", "-s", "dist"]
+#CMD ["serve", "-s", "dist"]
+CMD ["sh", "-c", "echo Environment VITE_CODESPACE_NAME is $VITE_CODESPACE_NAME && serve -s dist"]
