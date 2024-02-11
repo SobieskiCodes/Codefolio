@@ -1,7 +1,7 @@
 # Classwork Display App
-https://dev.to/ysmnikhil/how-to-build-with-react-or-vue-with-vite-and-docker-1a3l
-## Introduction
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/SobieskiCodes/CodefolioHomeworkDisplay/tree/pre_release_cleanup?quickstart=1)
 
+## Introduction
 This monolithic application is a showcase of advanced programming techniques and architectural choices, reflecting years of experience in software development. It is designed to display computer information systems (CIS) homework in an interactive manner using a combination of a comprehensive API and a React frontend.
 
 ## Technologies

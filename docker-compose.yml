@@ -7,9 +7,7 @@ services:
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
     volumes:
-      - frontend-data:/frontend
-      - /frontend/node_modules
-      - /frontend/dist
+      - frontend-data:/app  # Mount named volume to /app directory in frontend container
     ports:
       - '3000:3000'
     environment:
@@ -24,7 +22,7 @@ services:
         CODESPACE_NAME: "${CODESPACE_NAME}"
         GITHUB_TOKEN: "${GITHUB_TOKEN}"
     volumes:
-      - backend-data:/backend
+      - backend-data:/app  # Mount named volume to /app directory in backend container
     ports:
       - '8000:8000'
     environment:
