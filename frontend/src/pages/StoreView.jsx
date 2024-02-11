@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react';
 let headers = new Headers();
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
+const backend_url = `https://${codespaceName}-8000.app.github.dev`
+console.log("backend_url:", backend_url)
+
 
 const StoreView = () => {
   const [stores, setStores] = useState([]);
@@ -12,18 +16,14 @@ const StoreView = () => {
   const [creationResponse, setCreationResponse] = useState(null);
 
   useEffect(() => {
-    const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-    const backend_url = `https://${codespaceName}-8000.app.github.dev`
-    console.log("backend_url:", backend_url)
     fetch(`${backend_url}/api/classwork/store/stores/`, headers=headers)
-      .then(response => {
+      .then(async response => {
         // Check for a 404 status code
         if (response.status === 404) {
-          return response.json().then(data => {
-            if (data.detail === "No stores found") {
-              setShowCreateStore(true);
-            }
-          });
+          const data = await response.json();
+          if (data.detail === "No stores found") {
+            setShowCreateStore(true);
+          }
         } else if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         } else {

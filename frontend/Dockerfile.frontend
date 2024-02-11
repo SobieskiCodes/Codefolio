@@ -4,27 +4,29 @@ FROM node:latest
 # Set the working directory in the container to /frontend
 WORKDIR /frontend
 
-# Remove the node_modules and package-lock.json if they exist
-RUN rm -rf node_modules package{,-lock}.json
+# Declare ARGs for dynamic values passed at build time
+ARG CODESPACE_NAME
+
+# Use ARG values to set ENV variables for runtime    
+ENV VITE_CODESPACE_NAME=$CODESPACE_NAME
+
+# Copy package.json and package-lock.json (if exists)
+COPY package*.json ./
 
 # Install dependencies
-RUN npm create vite@4.2.0 . -- --template react-ts --force
-RUN npm init -y
-RUN npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion --force
 RUN npm install
 
 # Copy the rest of the frontend files into the working directory
 COPY . .
 
-
 # Expose the port that the dev server will run on
 EXPOSE 3000
 
-# Use the ARGs as ENVs if you need them at runtime
+# Build the application
 RUN npm run build
 
-# Start the application
-#CMD ["npm", "run", "dev"]
+# Install serve to serve the static files
 RUN npm install -g serve
 
+# Start the application with serve
 CMD ["serve", "-s", "dist"]

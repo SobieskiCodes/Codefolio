@@ -5,8 +5,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.frontend
       args:
-        REACT_APP_CODESPACE_NAME: "${CODESPACE_NAME}"
-        REACT_APP_GITHUB_TOKEN: "${GITHUB_TOKEN}"
+        CODESPACE_NAME: "${CODESPACE_NAME}"
     volumes:
       - frontend-data:/frontend
       - /frontend/node_modules
@@ -15,7 +14,7 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
-      - REACT_APP_CODESPACE_NAME="${CODESPACE_NAME}"
+      - VITE_CODESPACE_NAME="${CODESPACE_NAME}"
 
   backend:
     build:
@@ -32,5 +31,5 @@ services:
       - BACKEND_URL=http://localhost
 
 volumes:
-  frontend-data:  # This is the correct definition of the named volume
+  frontend-data:  # Define the frontend-data named volume
   backend-data:   # Define the backend-data named volume
