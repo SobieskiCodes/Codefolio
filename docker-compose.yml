@@ -6,7 +6,6 @@ services:
       dockerfile: ./frontend/Dockerfile.frontend
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
-    #entrypoint: ["/post_start_script.sh"] # Correct location for entrypoint
     volumes:
       - frontend-data:/app  # Mount named volume to /app directory in frontend container
     ports:
@@ -32,3 +31,9 @@ services:
 volumes:
   frontend-data:  # Define the frontend-data named volume
   backend-data:   # Define the backend-data named volume
+  shared:
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/workspaces/.codespaces/shared/
+      o: bind
