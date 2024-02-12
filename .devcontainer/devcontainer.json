@@ -5,10 +5,10 @@
 	},
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "backend",
-	"workspaceFolder": "/workspaces/CodefolioHomeworkDisplay",
+	"workspaceFolder": "/workspaces/",
 	"forwardPorts": [3000, 8000],
 	"portsAttributes": {"3000": {"label": "React App"}, "8000": {"label": "FastAPI"}},
-	"postCreateCommand": "python .devcontainer/set_ports_to_public.py $CODESPACE_NAME",
+	"postCreateCommand": "python ./CodefolioHomeworkDisplay/.devcontainer/set_ports_to_public.py $CODESPACE_NAME",
 	"shutdownAction": "stopCompose",
 	"customizations": {
 	  "vscode": {
