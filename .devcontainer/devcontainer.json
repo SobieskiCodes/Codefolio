@@ -8,7 +8,6 @@
 	"workspaceFolder": "/workspaces/",
 	"forwardPorts": [3000, 8000],
 	"portsAttributes": {"3000": {"label": "React App"}, "8000": {"label": "FastAPI"}},
-	"postStartCommand": "./../workspaces/CodefolioHomeworkDisplay/.devcontainer/post-start-script.sh",
 	"postCreateCommand": "gh codespace ports visibility 3000:public -c $CODESPACE_NAME && gh codespace ports visibility 8000:public -c $CODESPACE_NAME && gh codespace ports -c $CODESPACE_NAME",
 	"shutdownAction": "stopCompose",
 	"customizations": {

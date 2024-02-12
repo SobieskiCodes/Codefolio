@@ -2,7 +2,9 @@
 FROM node:latest
 
 # Set the working directory in the container to /
-WORKDIR /
+WORKDIR /frontend
+# COPY post_start_script.sh /post_start_script.sh
+# RUN chmod +x /post_start_script.sh
 
 # Declare ARGs for dynamic values passed at build time
 ARG CODESPACE_NAME
@@ -11,7 +13,7 @@ ARG CODESPACE_NAME
 ENV VITE_CODESPACE_NAME=$CODESPACE_NAME
 
 # Copy package.json and package-lock.json (if exists)
-COPY package*.json .
+COPY ./frontend/package*.json .
 
 # Install serve to serve the static files
 RUN npm install -g serve
@@ -20,7 +22,7 @@ RUN npm install -g serve
 RUN npm install
 
 # Copy the rest of the frontend files into the working directory
-COPY . .
+COPY ./frontend .
 
 # Expose the port that the dev server will run on
 EXPOSE 3000

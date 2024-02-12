@@ -2,10 +2,11 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile.frontend
+      context: .
+      dockerfile: ./frontend/Dockerfile.frontend
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
+    #entrypoint: ["/post_start_script.sh"] # Correct location for entrypoint
     volumes:
       - frontend-data:/app  # Mount named volume to /app directory in frontend container
     ports:
@@ -16,8 +17,8 @@ services:
 
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile.backend
+      context: .
+      dockerfile: ./backend/Dockerfile.backend
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
         GITHUB_TOKEN: "${GITHUB_TOKEN}"
