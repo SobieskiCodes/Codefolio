@@ -20,7 +20,7 @@ services:
       dockerfile: ./backend/Dockerfile.backend
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
-        GITHUB_TOKEN: "${GITHUB_TOKEN}"
+        GITHUB_USER: "${GITHUB_USER}"
     volumes:
       - backend-data:/app
     ports:
