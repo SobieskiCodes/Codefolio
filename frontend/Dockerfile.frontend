@@ -9,8 +9,9 @@ WORKDIR /frontend
 # Declare ARGs for dynamic values passed at build time
 ARG CODESPACE_NAME
 
-# Use ARG values to set ENV variables for runtime    
-ENV VITE_CODESPACE_NAME=$CODESPACE_NAME
+# Use ARG values to set ENV variables for runtime   
+ENV CODESPACE_NAME=${CODESPACE_NAME}
+ENV VITE_CODESPACE_NAME=${CODESPACE_NAME}
 
 # Copy package.json and package-lock.json (if exists)
 COPY ./frontend/package*.json .
