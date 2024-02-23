@@ -38,6 +38,7 @@ def inspect_response_data(data):
     return data
 
 
+
 @router.post("/stores/", response_model=SuccessResponse)
 def create_store_endpoint(store: StoreSchema, db: Session = Depends(get_db)):
     try:
@@ -47,31 +48,43 @@ def create_store_endpoint(store: StoreSchema, db: Session = Depends(get_db)):
             "store": create_new_store, 
         }
         return responses.JSONResponse(content=response_data, status_code=201)
-    
+
     except SQLAlchemyError as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
+            detail="An internal server error occurred."
         )
 
 
 @router.get("/stores/", response_model=List[StoreSchema])
-#@router.get("/stores/")
 def read_all_stores(db: Session = Depends(get_db)):
     stores = get_all_stores(db)
-    if not stores:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="No stores found"
-        )
+    if store is None:
+        return {"detail": "No stores found"}
     return stores
 
 @router.get("/stores/{store_id}", response_model=StoreSchema)
 def read_store_by_id(store_id: int, db: Session = Depends(get_db)):
     store = get_store(db, store_id)
     if store is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Store not found"
-        )
+        return {"detail": "Store not found"}
     return store
+
+
+# todo: move to its own file handler.
+# @app.exception_handler(SQLAlchemyError)
+# def sqlalchemy_exception_handler(request: Request, exc: SQLAlchemyError):
+#     detail = f"An error occurred: {exc}"
+#     logger.error(detail)
+
+#     # Only include detailed errors in response if in debug mode
+#     if app.debug:
+#         return JSONResponse(
+#             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+#             content={"detail": detail},
+#         )
+#     else:
+#         return JSONResponse(
+#             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+#             content={"detail": "An internal server error occurred."},
+#         )

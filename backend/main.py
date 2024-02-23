@@ -25,18 +25,18 @@ GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 origins = [
     f"https://{CODESPACE_NAME}-3000.app.github.dev", 
-    "127.0.0.1"
+    "frontend",
+    "localhost"
 ]
 # ^ another reason to need a url lol
 
 
 app = FastAPI()
 
-#origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

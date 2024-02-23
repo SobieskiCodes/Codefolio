@@ -1,45 +1,29 @@
-// StoreView.jsx
 import { useState, useEffect } from 'react';
+import { tryFetchUrl } from '../components/apiConfig';
 
-let headers = new Headers();
-headers.append('Content-Type', 'application/json');
-headers.append('Accept', 'application/json');
-const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-const backend_url = `https://${codespaceName}-8000.app.github.dev`
-console.log("backend_url:", backend_url)
-
-
-const StoreView = () => {
+const StoreView = ({ isActiveTab }) => {
   const [stores, setStores] = useState([]);
   const [showCreateStore, setShowCreateStore] = useState(false);
   const [newStoreName, setNewStoreName] = useState('');
   const [creationResponse, setCreationResponse] = useState(null);
 
   useEffect(() => {
-    fetch(`${backend_url}/api/classwork/store/stores/`, headers=headers)
-      .then(async response => {
-        // Check for a 404 status code
-        if (response.status === 404) {
-          const data = await response.json();
+    if (isActiveTab) {
+      tryFetchUrl('/api/classwork/store/stores/') 
+        .then(data => {
           if (data.detail === "No stores found") {
             setShowCreateStore(true);
+            setStores([]);  
+          } else {
+            setStores(data);
           }
-        } else if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        } else {
-          return response.json();
-        }
-      })
-      .then(data => {
-        if (data && !showCreateStore) {
-          setStores(data);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-        setCreationResponse(error.message);
-      });
-  }, []);
+        })
+        .catch(error => {
+          console.error('Error fetching stores:', error);
+          setCreationResponse(error.message);
+        });
+    }
+  }, [isActiveTab]);
 
   const handleCreateStore = () => {
     const storeData = {
@@ -48,26 +32,22 @@ const StoreView = () => {
       is_open: true,
     };
 
-    fetch(`${backend_url}/api/classwork/store/stores/`, {
+    tryFetchUrl('/api/classwork/store/stores/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(storeData),
+      headers: { 'Content-Type': 'application/json' },
     })
-      .then((response) => {
-        if (response.status === 201) {
-          // Store creation was successful
-          return response.json().then((data) => {
-            setCreationResponse(`Store "${data.store.name}" created successfully.`);
-            setNewStoreName(''); // Clear the input field
-            // You can also update your list of stores if needed
-          });
-        } else if (!response.ok) {
-          // Handle other error statuses here if needed
-          throw new Error('Store creation failed.');
-        }
+      .then(data => {
+        setCreationResponse(`Store "${data.store.name}" created successfully.`);
+        setNewStoreName(''); 
+        // TODO: fetch the list of stores again here to reflect the new store
+        return tryFetchUrl('/api/classwork/store/stores/');
       })
-      .catch((error) => {
-        console.error('Error:', error);
+      .then(newStoresData => {
+        setStores(newStoresData);
+      })
+      .catch(error => {
+        console.error('Error creating store:', error);
         setCreationResponse('Store creation failed.');
       });
   };
