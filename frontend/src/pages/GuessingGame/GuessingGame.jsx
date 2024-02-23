@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './GuessingGame.css';
+/* 
+I'd like to add a connection to the existing database and have a way to view a history / previous game table within the "game".
+When a game completes it gets added to the database which can then be viewed in the table. (spoiler alert, the debug panel)
 
+Thoughts for myself: Perhaps this would allow me to utilize an actual component that's not a page. 
+Thus it can *doh* be reused in the pages, dealing with database connection issues / alerts / bypassing etc.
+*/
 const initialGameState = () => ({
   id: Math.floor(Math.random() * 1000),
   low: 1,
@@ -54,17 +60,15 @@ const GuessingGame = () => {
         ...prevGame,
         guessesTaken: guesses,
         message: `Congratulations to myself, I got the answer in ${guesses} guesses.`,
-        history: [], // Clear the history
+        history: [],
       };
     });
   };
 
-  // Function to determine if the game has ended
   const hasGameEnded = () => {
     return game.message.includes('Congratulations');
   };
-  
-  // Function to restart the game
+
   const restartGame = () => {
     setGame(initialGameState());
   };

@@ -1,115 +1,100 @@
-/* Basic reset for margins and padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* Main game container styling */
-  .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    background-color: #121212; /* Dark background for dark mode */
-    color: #fff; /* Light text for contrast */
-    font-family: 'Arial', sans-serif;
-    position: relative; /* Allows absolute positioning inside */
-  }
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #121212; 
+  color: #fff; 
+  font-family: 'Arial', sans-serif;
+  position: relative; 
+}
 
-  /* Guess history container */
-  .guess-history {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Wrap to next line if too many guesses */
-    padding: 10px;
-  }
+.guess-history {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; 
+  padding: 10px;
+}
 
-  /* Style for individual previous guesses, should match current-guess for uniformity */
-  .guess-box {
-    padding: 10px;
-    margin: 10px;
-    width: 60px; /* Fixed width for uniformity */
-    height: 60px;
-    display: flex; /* To center content */
-    align-items: center; /* Vertical center */
-    justify-content: center; /* Horizontal center */
-    border: 2px solid #4CAF50; /* Green border */
-  }
+.guess-box {
+  padding: 10px;
+  margin: 10px;
+  width: 60px; 
+  height: 60px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  border: 2px solid #4CAF50;
+}
 
-  /* Current guess styling - assuming this is for the active/current guess */
-  .current-guess {
-    font-size: 1.5em; /* Larger font for emphasis */
-    padding: 10px; /* Spacing inside the box */
-    margin: 10px; /* Spacing outside the box */
-    width: 60px; /* Fixed width for uniformity */
-    height: 60px;
-    display: flex; /* To center content */
-    align-items: center; /* Vertical center */
-    justify-content: center; /* Horizontal center */
-    border: 3px solid #FFC107; /* Combined border declaration */
-    background-color: rgba(255, 193, 7, 0.2); /* a light shade of the border color */
-  }
+.current-guess {
+  font-size: 1.5em;
+  padding: 10px; 
+  margin: 10px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  border: 3px solid #FFC107;
+  background-color: rgba(255, 193, 7, 0.2);
+}
 
-  .game-message-box {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Wrap to next line if too many guesses */
-    padding: 10px;
-  }
+.game-message-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; 
+  padding: 10px;
+}
 
-  .game-message {
-    margin: 10px 0;
-    font-size: 1.2em;
-    color: #fff;
-    text-align: center;
-  }
-  
-  /* Interactive buttons styling */
-  .interactive-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; 
-    padding: 10px;
-    z-index: 10; /* Ensure it's above other elements */
-  }
+.game-message {
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: #fff;
+  text-align: center;
+}
 
-  /* Style for the buttons */
-  .button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-block; /* Align buttons in a row */
-  }
+.interactive-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; 
+  padding: 10px;
+  z-index: 10; 
+}
 
-  /* Specific styles for action buttons */
-  .high-button { background-color: #f44336; } /* Red for higher */
-  .low-button { background-color: #2196F3; } /* Blue for lower */
-  .correct-button { background-color: #4CAF50; } /* Green for correct */
-  
-  /* Restart button hidden by default */
-  .play-again-button {
-    /* Now inherits styles from .button for consistency */
-    background-color: #FFC107; 
-  }
-  
-  /* Debug information styling */
-  .debug-info {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    background: rgba(0,0,0,0.5);
-    font-size: 0.8em;
-  }
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block; 
+}
 
-  /* Transition effects for expanding previous guesses - Not needed if we're not using expandable sections */
-  /* .expand {
-    max-height: 500px; Adjust max-height as needed 
-  } */
-  
+.high-button { background-color: #f44336; } 
+.low-button { background-color: #2196F3; } 
+.correct-button { background-color: #4CAF50; } 
+
+.play-again-button {
+  background-color: #FFC107; 
+}
+
+/* Debug information not yet implemented*/
+.debug-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background: rgba(0,0,0,0.5);
+  font-size: 0.8em;
+}
+
