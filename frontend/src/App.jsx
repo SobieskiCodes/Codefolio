@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { ChakraProvider, Box, Tab, TabList, Tabs, TabPanels, TabPanel, Flex } from "@chakra-ui/react";
 import theme from './theme/theme'; 
