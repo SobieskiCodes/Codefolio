@@ -3,6 +3,7 @@
 	"features": {
 		"github-cli": "latest"
 	},
+	
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "backend",
 	"workspaceFolder": "/workspaces/",
@@ -18,7 +19,7 @@
 			  "path": "bash"
 			}
 		  },
-		  "terminal.integrated.defaultProfile.linux": "bash"
+		  "terminal.integrated.defaultProfile.linux": "bash" 
 		},
 		"extensions": [
 		  "dbaeumer.vscode-eslint"

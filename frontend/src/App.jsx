@@ -6,7 +6,7 @@ import './App.css';
 import ViewOne from './pages/ViewOne';
 import StoreView from './pages/StoreView';
 import ViewThree from './pages/ViewThree';
-import GuessingGame from './pages/GuessingGame';
+import GuessingGame from './pages/GuessingGame/GuessingGame';
 import ColorModeToggle from './components/ColorModeToggle'; // Import the color mode toggle component
 
 // We will be automating this with file/project names, from a folder we will traverse.
