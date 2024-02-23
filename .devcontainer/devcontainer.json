@@ -1,10 +1,12 @@
 {
 	"name": "Class Work Display App",
 	"features": {
-	  "github-cli": "latest"
+	  "github-cli": "latest",
+	  "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
 	},
 	"dockerComposeFile": "../docker-compose.yml",
-	"service": "backend",
+	"service": "app",
+	// Setup the go environment and mount into the dev container at the expected location
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"forwardPorts": [3000, 8000],
 	"portsAttributes": {
@@ -32,4 +34,3 @@
 	  "CODESPACE_NAME": "${localEnv:CODESPACE_NAME}"
 	}
   }
-  
