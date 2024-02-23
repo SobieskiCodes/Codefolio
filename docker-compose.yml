@@ -8,7 +8,6 @@ services:
         CODESPACE_NAME: "${CODESPACE_NAME}"
     volumes:
       - frontend-data:/app
-      - ../..:/workspaces:cached
     ports:
       - '3000:3000'
     environment:

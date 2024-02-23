@@ -11,7 +11,6 @@ ARG CODESPACE_NAME
 
 # Use ARG values to set ENV variables for runtime   
 ENV CODESPACE_NAME=${CODESPACE_NAME}
-ENV VITE_CODESPACE_NAME=${CODESPACE_NAME}
 
 # Copy package.json and package-lock.json (if exists)
 COPY ./frontend/package*.json .
@@ -29,7 +28,7 @@ COPY ./frontend .
 EXPOSE 3000
 
 # Build the application
-RUN npm run build
+RUN VITE_CODESPACE_NAME=${CODESPACE_NAME} npm run build
 
 # Start the application with serve
 #CMD ["serve", "-s", "dist"]
