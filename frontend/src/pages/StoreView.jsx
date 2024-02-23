@@ -9,11 +9,11 @@ const StoreView = ({ isActiveTab }) => {
 
   useEffect(() => {
     if (isActiveTab) {
-      tryFetchUrl('/api/classwork/store/stores/') 
+      tryFetchUrl('/api/classwork/store/stores/')
         .then(data => {
           if (data.detail === "No stores found") {
             setShowCreateStore(true);
-            setStores([]);  
+            setStores([]);
           } else {
             setStores(data);
           }
@@ -25,32 +25,6 @@ const StoreView = ({ isActiveTab }) => {
     }
   }, [isActiveTab]);
 
-  const handleCreateStore = () => {
-    const storeData = {
-      name: newStoreName,
-      balance: 0,
-      is_open: true,
-    };
-
-    tryFetchUrl('/api/classwork/store/stores/', {
-      method: 'POST',
-      body: JSON.stringify(storeData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(data => {
-        setCreationResponse(`Store "${data.store.name}" created successfully.`);
-        setNewStoreName(''); 
-        // TODO: fetch the list of stores again here to reflect the new store
-        return tryFetchUrl('/api/classwork/store/stores/');
-      })
-      .then(newStoresData => {
-        setStores(newStoresData);
-      })
-      .catch(error => {
-        console.error('Error creating store:', error);
-        setCreationResponse('Store creation failed.');
-      });
-  };
 
   return (
     <div className="store-view">
@@ -63,11 +37,10 @@ const StoreView = ({ isActiveTab }) => {
             onChange={(e) => setNewStoreName(e.target.value)}
             placeholder="Enter store name"
           />
-          <button onClick={handleCreateStore}>Create Store</button>
+          <button onClick={console.log('create store clicked')}>Create Store</button>
         </div>
       )}
-
-      {/* Display success or failure notice */}
+      {/* Display success or failure notice <button onClick={handleCreateStore}>Create Store</button>*/}
       {creationResponse && <p>{creationResponse}</p>}
 
       {stores && stores.length > 0 && (
