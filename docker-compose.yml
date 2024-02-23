@@ -5,13 +5,15 @@ services:
       context: .
       dockerfile: ./frontend/Dockerfile.frontend
       args:
-        CODESPACE_NAME: "${CODESPACE_NAME}"
+        CODESPACE_NAME: ${CODESPACE_NAME}
     volumes:
-      - frontend-data:/app
+      - ../..:/workspaces:cached
+      #network_mode: service:backend
+      # puts the front on the same network as the database, so that it can access it on localhost
+      # I think in the end we have a base "service" that then links as such with both the front and backend.
     ports:
       - '3000:3000'
     environment:
-      - NODE_ENV=development
       - VITE_CODESPACE_NAME="${CODESPACE_NAME}"
 
   backend:
@@ -22,11 +24,9 @@ services:
         CODESPACE_NAME: "${CODESPACE_NAME}"
         GITHUB_USER: "${GITHUB_USER}"
     volumes:
-      - backend-data:/app
+      - ../..:/workspaces:cached
     ports:
       - '8000:8000'
-    environment:
-      - BACKEND_URL=http://localhost
 
 volumes:
   frontend-data:
