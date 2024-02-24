@@ -7,8 +7,7 @@
 # The endpoint layer is often responsible for converting the Pydantic model into a format that the business logic layer can work with, which could be a dictionary,
 # a simple Python object, or directly passing the Pydantic model.
 
-from fastapi import Depends, APIRouter, HTTPException, Request, responses
-from fastapi.responses import JSONResponse
+from fastapi import Depends, APIRouter, HTTPException, responses
 from sqlalchemy.exc import SQLAlchemyError
 from fastapi import status
 from sqlalchemy.orm import Session
@@ -16,7 +15,6 @@ from typing import List
 from app.db.database import get_db
 from app.core.crud.store_crud import create_store, get_store, get_all_stores, delete_store, update_store
 from app.db.schemas.store_schema import StoreSchema, StoreCreateSchema, StoreUpdateSchema, SuccessResponse
-from typing import Any
 router = APIRouter()
 
 # def inspect_response_data(data):
