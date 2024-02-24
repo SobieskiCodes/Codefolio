@@ -59,8 +59,6 @@ def create_store_endpoint(store: StoreSchema, db: Session = Depends(get_db)):
 #@router.get("/stores/")
 def read_all_stores(db: Session = Depends(get_db)):
     stores = get_all_stores(db)
-    if not stores:
-        return {'detail': "Stores not found"}
     return stores
 
 @router.get("/stores/{store_id}", response_model=StoreSchema)

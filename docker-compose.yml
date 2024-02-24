@@ -17,9 +17,6 @@ services:
         CODESPACE_NAME: ${CODESPACE_NAME}
     volumes:
       - ../..:/workspaces:cached
-      - type: bind
-        source: /root/.codespaces/shared
-        target: /workspaces/.codespaces/shared
     ports:
       - '3000:3000'
     environment:
@@ -36,9 +33,6 @@ services:
         GITHUB_USER: "${GITHUB_USER}"
     volumes:
       - ../..:/workspaces:cached
-      - type: bind
-        source: /root/.codespaces/shared
-        target: /workspaces/.codespaces/shared
     ports:
       - '8000:8000'
     depends_on:
