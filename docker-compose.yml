@@ -1,31 +1,25 @@
 version: '3.8'
+
 services:
   app:
     build: 
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ../..:/workspaces:cached
-    command: sleep infinity
-    
+    command: tail -f /dev/null
+
   frontend:
     build:
       context: .
       dockerfile: ./frontend/Dockerfile.frontend
       args:
         CODESPACE_NAME: ${CODESPACE_NAME}
-    volumes:
-      - ../..:/workspaces:cached
-      - type: bind
-        source: /root/.codespaces/shared
-        target: /workspaces/.codespaces/shared
-      #network_mode: service:backend
-      # puts the front on the same network as the database, so that it can access it on localhost
-      # I think in the end we have a base "service" that then links as such with both the front and backend.
     ports:
       - '3000:3000'
     environment:
       - VITE_CODESPACE_NAME="${CODESPACE_NAME}"
+    restart: on-failure
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -33,15 +27,18 @@ services:
       dockerfile: ./backend/Dockerfile.backend
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
-        GITHUB_USER: "${GITHUB_USER}"
-    volumes:
-      - ../..:/workspaces:cached
-      - type: bind
-        source: /root/.codespaces/shared
-        target: /workspaces/.codespaces/shared
+    environment:
+      CODESPACE_NAME: "${CODESPACE_NAME}"
+    restart: on-failure
     ports:
       - '8000:8000'
+    depends_on:
+      - app
 
 volumes:
   frontend-data:
   backend-data:
+
+networks:
+  default:
+    driver: bridge
