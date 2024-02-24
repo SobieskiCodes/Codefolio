@@ -21,11 +21,9 @@ load_dotenv('/workspaces/.codespaces/shared/.env')
 
 # Now, you can directly access the variables
 CODESPACE_NAME = os.getenv('CODESPACE_NAME')
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 origins = [
     f"https://{CODESPACE_NAME}-3000.app.github.dev", 
-    "frontend",
     "localhost"
 ]
 # ^ another reason to need a url lol

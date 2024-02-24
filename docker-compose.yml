@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspaces:cached
+      - ../:/workspaces:cached
     command: sleep infinity
 
   frontend:
@@ -16,7 +16,7 @@ services:
       args:
         CODESPACE_NAME: ${CODESPACE_NAME}
     volumes:
-      - ../..:/workspaces:cached
+      - ../:/workspaces:cached
     ports:
       - '3000:3000'
     environment:
@@ -30,9 +30,10 @@ services:
       dockerfile: ./backend/Dockerfile.backend
       args:
         CODESPACE_NAME: "${CODESPACE_NAME}"
-        GITHUB_USER: "${GITHUB_USER}"
     volumes:
-      - ../..:/workspaces:cached
+      - ../:/workspaces:cached
+    environment:
+      CODESPACE_NAME: "${CODESPACE_NAME}"
     ports:
       - '8000:8000'
     depends_on:
