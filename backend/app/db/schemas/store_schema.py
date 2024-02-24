@@ -16,10 +16,19 @@ from typing import List, Optional
 
 
 class ItemSchema(BaseModel):
+    id: int
+    store_id: int
     name: str
     price: float
 
+
+class StoreCreateSchema(BaseModel):
+    name: str
+    balance: float
+    is_open: bool
+
 class StoreSchema(BaseModel):
+    id: int
     name: str
     balance: float
     is_open: bool
@@ -27,9 +36,10 @@ class StoreSchema(BaseModel):
     
 class SuccessResponse(BaseModel):
     message: str
-    store: StoreSchema
+    store: Optional[StoreSchema] = None
 
 class StoreUpdateSchema(BaseModel):
+    id: int
     name: Optional[str] = None
     balance: Optional[float] = None
     is_open: Optional[bool] = None

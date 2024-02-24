@@ -18,7 +18,7 @@ from app.db.database import Base
 class Store(Base):
     __tablename__ = 'stores'
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
+    name = Column(String, index=True)
     balance = Column(Float, default=0.0)
     is_open = Column(Boolean, default=True)
     inventory = relationship("Item", back_populates="store")

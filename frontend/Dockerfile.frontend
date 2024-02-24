@@ -2,7 +2,7 @@
 FROM node:latest
 
 # Set the working directory in the container to /
-WORKDIR /workspaces/CodefolioHomeworkDisplay/
+WORKDIR /workspaces/CodefolioHomeworkDisplay/frontend
 # COPY post_start_script.sh /post_start_script.sh
 # RUN chmod +x /post_start_script.sh
 
@@ -32,4 +32,4 @@ RUN VITE_CODESPACE_NAME=${CODESPACE_NAME} npm run build
 
 # Start the application with serve
 #CMD ["serve", "-s", "dist"]
-CMD ["sh", "-c", "echo Environment VITE_CODESPACE_NAME is $VITE_CODESPACE_NAME && serve -s dist"]
+CMD ["npm", "run", "dev"]

@@ -1,9 +1,9 @@
 function determineBackendUrl() {
-    let backendUrl = 'http://backend:8000';
+    let backendUrl = 'http://localhost:8000';
   
     // Check if we're running in a Codespaces environment
     const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
-    if (codespaceName) {
+    if (codespaceName && codespaceName.length > 5) {
       backendUrl = `https://${codespaceName}-8000.app.github.dev`;
     }
   

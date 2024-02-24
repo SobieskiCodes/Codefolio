@@ -16,5 +16,20 @@ def create_store(db: Session, store_data: StoreSchema):
     db.refresh(db_store)
     return db_store.to_dict()
 
+def delete_store(db: Session, store_id: int):
+    store = db.query(Store).filter(Store.id == store_id).first()
+    if store:
+        db.delete(store)
+        db.commit()
+        return True
+    return False
 
-# Additional CRUD operations for Item and other functionalities can be added here
+def update_store(db: Session, store_id: int, store_data: dict):
+    store = db.query(Store).filter(Store.id == store_id).first()
+    if store:
+        for key, value in store_data.items():
+            setattr(store, key, value)
+        db.commit()
+        return store.to_dict()
+    return None
+
