@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './GuessingGame.css';
 /* 
 I'd like to add a connection to the existing database and have a way to view a history / previous game table within the "game".

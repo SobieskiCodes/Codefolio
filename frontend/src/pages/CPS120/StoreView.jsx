@@ -16,19 +16,19 @@ const StoreView = ({ isActiveTab }) => {
   };
 
   const fetchStores = () => {
-    setIsLoading(true); // Start loading
+    setIsLoading(true); 
     tryFetchUrl('/api/classwork/store/stores/')
       .then(data => {
         console.log(data);
         setStores(data || []);
-        setIsLoading(false); // Stop loading after data is fetched
-        setFetchError(false); // Reset fetch error on successful fetch
+        setIsLoading(false); 
+        setFetchError(false); 
       })
       .catch(error => {
         console.error('Error fetching stores:', error);
         setCreationResponse(error.message);
-        setIsLoading(false); // Stop loading even if there's an error
-        setFetchError(true); // Indicate that there was a fetch error
+        setIsLoading(false); 
+        setFetchError(true); 
       });
   };
   

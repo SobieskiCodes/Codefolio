@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, Request, Response, status
-from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
