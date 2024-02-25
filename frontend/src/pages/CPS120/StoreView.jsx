@@ -8,6 +8,8 @@ const StoreView = ({ isActiveTab }) => {
   const [isLoading, setIsLoading] = useState(true); // Add a loading state
   const fetchedRef = useRef(false);
 
+  const [fetchError, setFetchError] = useState(false); // Track if there was an error fetching
+
   const fetchStores = () => {
     setIsLoading(true); // Start loading
     tryFetchUrl('/api/classwork/store/stores/')
@@ -15,11 +17,13 @@ const StoreView = ({ isActiveTab }) => {
         console.log(data);
         setStores(data || []);
         setIsLoading(false); // Stop loading after data is fetched
+        setFetchError(false); // Reset fetch error on successful fetch
       })
       .catch(error => {
         console.error('Error fetching stores:', error);
         setCreationResponse(error.message);
         setIsLoading(false); // Stop loading even if there's an error
+        setFetchError(true); // Indicate that there was a fetch error
       });
   };
   
@@ -71,14 +75,16 @@ const StoreView = ({ isActiveTab }) => {
       }      
     } catch (error) {
       console.error('Error creating store:', error);
-      setCreationResponse(error.response?.data?.detail || 'Error creating store. Please try again.');
+      setCreationResponse(error.response?.data?.detail || 'Error loading stores. Please try again later.');
     }
   };
-
+  
   return (
     <div className="store-view">
       {isLoading ? (
-        <p>Loading stores...</p> // Optionally show a loading message
+        <p>Loading stores...</p>
+      ) : fetchError ? (
+        <p>It looks like there was an error connecting to the database. Please try again later.</p>
       ) : (
         <>
           <div>
@@ -109,6 +115,5 @@ const StoreView = ({ isActiveTab }) => {
       )}
     </div>
   );
-};
-
+}
 export default StoreView;
