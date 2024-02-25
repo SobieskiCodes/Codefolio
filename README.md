@@ -5,6 +5,7 @@
 This monolithic application is a showcase of advanced programming techniques and architectural choices, reflecting years of experience in software development. It is designed to display computer information systems (CIS) homework in an interactive manner using a combination of a comprehensive API and a React frontend.
 
 ## Technologies
+Test 
 
 ### Frontend
 
