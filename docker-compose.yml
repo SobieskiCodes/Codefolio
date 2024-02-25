@@ -37,8 +37,6 @@ services:
 
 volumes:
   frontend-data:
-  backend-data:
+  #backend-data:
 
-networks:
-  default:
-    driver: bridge
+
