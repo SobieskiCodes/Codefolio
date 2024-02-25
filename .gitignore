@@ -7,3 +7,4 @@ app.db
 playground.py
 compose-dev.yaml
 frontend/.env
+.tmp*
