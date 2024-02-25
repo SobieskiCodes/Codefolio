@@ -20,20 +20,20 @@ services:
     volumes:
       - /root/.codespaces/shared:/workspaces/.codespaces/shared
     restart: on-failure
-  #   depends_on:
-  #     - backend
+    depends_on:
+      - backend
 
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: ./backend/Dockerfile.backend
-  #     args:
-  #       CODESPACE_NAME: "${CODESPACE_NAME}"
-  #   environment:
-  #     CODESPACE_NAME: "${CODESPACE_NAME}"
-  #   restart: on-failure
-  #   ports:
-  #     - '8000:8000'
-  #   depends_on:
-  #     - app
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile.backend
+      args:
+        CODESPACE_NAME: "${CODESPACE_NAME}"
+    environment:
+      CODESPACE_NAME: "${CODESPACE_NAME}"
+    restart: on-failure
+    ports:
+      - '8000:8000'
+    depends_on:
+      - app
 
