@@ -5,8 +5,8 @@
 This monolithic application is a showcase of advanced programming techniques and architectural choices, reflecting years of experience in software development. It is designed to display computer information systems (CIS) homework in an interactive manner using a combination of a comprehensive API and a React frontend.
 
 ## Technologies
-testing  123
-
+testing setting v0.1.*
+chore(frontend): moving stuff (pre-release)
 ### Frontend
 
 - **NPM**: Node Package Manager for dependency management.
