@@ -17,10 +17,9 @@ services:
       - '3000:3000'
     environment:
       - VITE_CODESPACE_NAME="${CODESPACE_NAME}"
+    volumes:
+      - /root/.codespaces/shared:/workspaces/.codespaces/shared
     restart: on-failure
-    entrypoint: ./entrypoint.sh
-    command: ["serve", "-s", "dist", "--no-clipboard"]
-
   #   depends_on:
   #     - backend
 

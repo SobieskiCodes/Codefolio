@@ -2,10 +2,6 @@ FROM node:latest
 
 WORKDIR /workspaces/Codefolio/frontend
 
-COPY entrypoint.sh .
-
-RUN chmod +x entrypoint.sh
-
 ARG CODESPACE_NAME
   
 ENV CODESPACE_NAME=${CODESPACE_NAME}
@@ -20,9 +16,10 @@ COPY ./frontend .
 
 EXPOSE 3000
 
-RUN npm run build
+#RUN npm run build
 
-# We override this in docker-compose.yml due to how the entrypoint.sh's exec "$@" passes context.
-#CMD ["serve", "-s", "dist"]
+RUN VITE_CODESPACE_NAME=${CODESPACE_NAME} npm run build
+
 #CMD ["sh", "-c", "echo Environment VITE_CODESPACE_NAME is $VITE_CODESPACE_NAME && serve -s dist"]
+CMD ["serve", "-s", "dist"]
 #CMD ["npm", "run", "dev"]
