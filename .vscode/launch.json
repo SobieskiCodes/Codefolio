@@ -2,15 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "Launch Frontend via NPM",
+            "name": "DEV: Frontend",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceFolder}/frontend",
@@ -24,8 +16,16 @@
             ]
         },
         {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "Python: FastAPI (Linux)",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/backend/main.py",
             "args": [
@@ -42,7 +42,7 @@
         },
         {
             "name": "Python: FastAPI (Windows)",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/backend/main.py",
             "args": [

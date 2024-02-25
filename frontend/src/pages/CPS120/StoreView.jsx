@@ -1,21 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
-import { tryFetchUrl } from '../components/apiConfig';
+import { tryFetchUrl } from '../../components/apiConfig';
 
 const StoreView = ({ isActiveTab }) => {
   const [stores, setStores] = useState([]);
   const [newStoreName, setNewStoreName] = useState('');
   const [creationResponse, setCreationResponse] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Add a loading state
   const fetchedRef = useRef(false);
 
   const fetchStores = () => {
+    setIsLoading(true); // Start loading
     tryFetchUrl('/api/classwork/store/stores/')
       .then(data => {
         console.log(data);
         setStores(data || []);
+        setIsLoading(false); // Stop loading after data is fetched
       })
       .catch(error => {
         console.error('Error fetching stores:', error);
         setCreationResponse(error.message);
+        setIsLoading(false); // Stop loading even if there's an error
       });
   };
   
@@ -73,29 +77,35 @@ const StoreView = ({ isActiveTab }) => {
 
   return (
     <div className="store-view">
-      <div>
-        <p>Add a new store:</p>
-        <input
-          type="text"
-          value={newStoreName}
-          onChange={(e) => setNewStoreName(e.target.value)}
-          placeholder="Enter store name"
-        />
-        <button onClick={handleCreateStore}>Create Store</button>
-      </div>
-      {creationResponse && <p>{creationResponse}</p>}
-      {stores && stores.length > 0 && (
-        <div>
-          <h2>Select a Store to View</h2>
-          <ul>
-            {stores.map((store) => (
-              <li key={store.id}>
-                ID: {store.id}, {store.name} - Balance: {store.balance} {store.is_open ? 'Open' : 'Closed'}
-                <button onClick={() => deleteStore(store.id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {isLoading ? (
+        <p>Loading stores...</p> // Optionally show a loading message
+      ) : (
+        <>
+          <div>
+            <p>Add a new store:</p>
+            <input
+              type="text"
+              value={newStoreName}
+              onChange={(e) => setNewStoreName(e.target.value)}
+              placeholder="Enter store name"
+            />
+            <button onClick={handleCreateStore}>Create Store</button>
+          </div>
+          {creationResponse && <p>{creationResponse}</p>}
+          {stores && stores.length > 0 && (
+            <div>
+              <h2>Select a Store to View</h2>
+              <ul>
+                {stores.map((store) => (
+                  <li key={store.id}>
+                    ID: {store.id}, {store.name} - Balance: {store.balance} {store.is_open ? 'Open' : 'Closed'}
+                    <button onClick={() => deleteStore(store.id)}>Delete</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

@@ -4,16 +4,14 @@ import theme from './theme/theme';
 import './App.css';
 import ColorModeToggle from './components/ColorModeToggle';
 
-const ViewOne = React.lazy(() => import('./pages/ViewOne'));
-const StoreView = React.lazy(() => import('./pages/StoreView'));
-const ViewThree = React.lazy(() => import('./pages/ViewThree'));
-const GuessingGame = React.lazy(() => import('./pages/GuessingGame/GuessingGame'));
+const ViewOne = React.lazy(() => import('./pages/CPS120/ViewOne'));
+const StoreView = React.lazy(() => import('./pages/CPS120/StoreView'));
+const GuessingGame = React.lazy(() => import('./pages/CPS120/GuessingGame/GuessingGame'));
 
 const tabData = [
   { name: 'Tab 1', component: ViewOne },
   { name: 'Tab 2', component: StoreView },
-  { name: 'Tab 3', component: ViewThree },
-  { name: 'Tab 4', component: GuessingGame },
+  { name: 'Tab 3', component: GuessingGame },
 ];
 
 function App() {
