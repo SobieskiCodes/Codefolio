@@ -1,14 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { tryFetchUrl } from '../../components/apiConfig';
+import PropTypes from 'prop-types';
+
 
 const StoreView = ({ isActiveTab }) => {
   const [stores, setStores] = useState([]);
   const [newStoreName, setNewStoreName] = useState('');
   const [creationResponse, setCreationResponse] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add a loading state
+  const [isLoading, setIsLoading] = useState(true); 
   const fetchedRef = useRef(false);
+  const [fetchError, setFetchError] = useState(false); 
 
-  const [fetchError, setFetchError] = useState(false); // Track if there was an error fetching
+  StoreView.propTypes = {
+    isActiveTab: PropTypes.bool.isRequired
+  };
 
   const fetchStores = () => {
     setIsLoading(true); // Start loading
