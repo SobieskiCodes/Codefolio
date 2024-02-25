@@ -1,36 +1,28 @@
-# Use a Node.js base image
 FROM node:latest
 
-# Set the working directory in the container to /
 WORKDIR /workspaces/Codefolio/frontend
-# COPY post_start_script.sh /post_start_script.sh
-# RUN chmod +x /post_start_script.sh
 
-# Declare ARGs for dynamic values passed at build time
+COPY entrypoint.sh .
+
+RUN chmod +x entrypoint.sh
+
 ARG CODESPACE_NAME
-
-# Use ARG values to set ENV variables for runtime   
+  
 ENV CODESPACE_NAME=${CODESPACE_NAME}
 
-# Copy package.json and package-lock.json (if exists)
 COPY ./frontend/package*.json .
 
-# Install serve to serve the static files
 RUN npm install -g serve
 
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the frontend files into the working directory
 COPY ./frontend .
 
-# Expose the port that the dev server will run on
 EXPOSE 3000
 
-# Build the application
-#RUN VITE_CODESPACE_NAME=${CODESPACE_NAME} npm run build
 RUN npm run build
 
-# Start the application with serve
-CMD ["serve", "-s", "dist"]
+# We override this in docker-compose.yml due to how the entrypoint.sh's exec "$@" passes context.
+#CMD ["serve", "-s", "dist"]
+#CMD ["sh", "-c", "echo Environment VITE_CODESPACE_NAME is $VITE_CODESPACE_NAME && serve -s dist"]
 #CMD ["npm", "run", "dev"]

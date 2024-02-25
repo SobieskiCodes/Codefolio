@@ -28,8 +28,5 @@
 		  "dbaeumer.vscode-eslint"
 		]
 	  }
-	},
-	"containerEnv": {
-	  "CODESPACE_NAME": "${localEnv:CODESPACE_NAME}"
 	}
   }

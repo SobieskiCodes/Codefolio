@@ -18,25 +18,23 @@ services:
     environment:
       - VITE_CODESPACE_NAME="${CODESPACE_NAME}"
     restart: on-failure
-    depends_on:
-      - backend
+    entrypoint: ./entrypoint.sh
+    command: ["serve", "-s", "dist", "--no-clipboard"]
 
-  backend:
-    build:
-      context: .
-      dockerfile: ./backend/Dockerfile.backend
-      args:
-        CODESPACE_NAME: "${CODESPACE_NAME}"
-    environment:
-      CODESPACE_NAME: "${CODESPACE_NAME}"
-    restart: on-failure
-    ports:
-      - '8000:8000'
-    depends_on:
-      - app
+  #   depends_on:
+  #     - backend
 
-volumes:
-  frontend-data:
-  #backend-data:
-
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./backend/Dockerfile.backend
+  #     args:
+  #       CODESPACE_NAME: "${CODESPACE_NAME}"
+  #   environment:
+  #     CODESPACE_NAME: "${CODESPACE_NAME}"
+  #   restart: on-failure
+  #   ports:
+  #     - '8000:8000'
+  #   depends_on:
+  #     - app
 
