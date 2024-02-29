@@ -1,6 +1,6 @@
 // ViewOne.jsx
 
-function ViewOne() {
+const ViewOne = () => {
   return <div>Hello from View One!</div>;
 }
 

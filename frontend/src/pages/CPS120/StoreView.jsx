@@ -121,4 +121,5 @@ const StoreView = ({ isActiveTab }) => {
     </div>
   );
 }
+
 export default StoreView;
