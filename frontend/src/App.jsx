@@ -5,9 +5,9 @@ import './App.css';
 import ColorModeToggle from './components/ColorModeToggle';
 
 const tabData = [
+  { name: 'Fishbone', component: React.lazy(() => import('./pages/CPS120/fishbone/FishboneAquatics')) },
   { name: 'Store View', component: React.lazy(() => import('./pages/CPS120/StoreView')) },
   { name: 'Guessing Game', component: React.lazy(() => import('./pages/CPS120/GuessingGame/GuessingGame')) },
-  { name: 'View One', component: React.lazy(() => import('./pages/CPS120/ViewOne')) },
 ];
 
 function App() {
