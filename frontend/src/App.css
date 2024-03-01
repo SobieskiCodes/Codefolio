@@ -19,6 +19,14 @@
   color: white;
 }
 
+.App-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('/theme/background.svg') no-repeat center center;
+  color: white;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -39,16 +47,44 @@ html, body, #root {
 
 .chakra-tabs  {
   height: 90%;
+  
 }
 
 .chakra-tabs__tab-panels {
   height: 90%;
+  
 }
 
 .chakra-tabs__tab-panel {
   height: 100%;
+  
 }
 
+.cps120-tab-panel {
+  border-width: 2px;
+  border-radius: var(--chakra-radii-lg);
+  padding: var(--chakra-space-4);
+  height: 100%;
+  
+}
 
+.cps120-chakra-tabs {
+  height: 100%;
+  padding: var(--chakra-space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
 
+.cps120-chakra-tabs .buttons {
+  padding: var(--chakra-space-2); 
+  margin: var(--chakra-space-2); 
+  
+}
+
+.cps120-chakra-tabs .cps120-chakra-tablist {
+  border-bottom: none !important;
+}
 

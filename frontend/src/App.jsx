@@ -4,14 +4,10 @@ import theme from './theme/theme';
 import './App.css';
 import ColorModeToggle from './components/ColorModeToggle';
 
-const ViewOne = React.lazy(() => import('./pages/CPS120/ViewOne'));
-const StoreView = React.lazy(() => import('./pages/CPS120/StoreView'));
-const GuessingGame = React.lazy(() => import('./pages/CPS120/GuessingGame/GuessingGame'));
-
 const tabData = [
-  { name: 'Tab 1', component: ViewOne },
-  { name: 'Tab 2', component: StoreView },
-  { name: 'Tab 3', component: GuessingGame },
+  { name: 'Fishbone', component: React.lazy(() => import('./pages/CPS120/fishbone/FishboneAquatics')) },
+  { name: 'Store View', component: React.lazy(() => import('./pages/CPS120/StoreView')) },
+  { name: 'Guessing Game', component: React.lazy(() => import('./pages/CPS120/GuessingGame/GuessingGame')) },
 ];
 
 function App() {
@@ -25,21 +21,21 @@ function App() {
     <ChakraProvider theme={theme}>
       <Flex direction="column" h="100vh">
         <Flex justify="space-between" align="center" p={4} w="100%">
-          <Box>Title</Box>
+          <Box>CPS120 Showcase</Box>
           <ColorModeToggle />
         </Flex>
-        <Tabs isFitted variant="enclosed" w="100%" index={tabIndex} onChange={handleTabsChange}>
-          <TabList>
-            {tabData.map((tab) => (
-              <Tab key={tab.name}>{tab.name}</Tab>
+        <Tabs isFitted variant="enclosed" w="100%" index={tabIndex} onChange={handleTabsChange} className="cps120-chakra-tabs">
+          <TabList className='cps120-chakra-tablist'>
+            {tabData.map((tab, index) => (
+              <Tab key={index}>{tab.name}</Tab>
             ))}
           </TabList>
           <TabPanels>
             {tabData.map((tab, index) => (
-              <TabPanel key={tab.name}>
+              <TabPanel key={index} className="cps120-tab-panel">
                 <Suspense fallback={<Spinner />}>
                   {tabIndex === index && (
-                    <Box borderWidth="2px" borderRadius="lg" p={4} shadow="sm" h="100%">
+                    <Box h="100%">
                       {React.createElement(tab.component, { isActiveTab: tabIndex === index })}
                     </Box>
                   )}
@@ -51,6 +47,7 @@ function App() {
       </Flex>
     </ChakraProvider>
   );
+  
 }
 
 export default App;
