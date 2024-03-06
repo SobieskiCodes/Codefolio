@@ -2,11 +2,10 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/SobieskiCodes/CodefolioHomeworkDisplay/tree/pre_release_cleanup?quickstart=1)
 
 ## Introduction
-This monolithic application is a showcase of advanced programming techniques and architectural choices, reflecting years of experience in software development. It is designed to display computer information systems (CIS) homework in an interactive manner using a combination of a comprehensive API and a React frontend.
+Welcome to my Decade of Discovery: a full-stack, monolithic application designed to showcase a ten-year journey through the landscape of computer science. This repository has evolved beyond its initial scope of merely showcasing assignments; it's an interactive exploration of the concepts that have shaped my academic and professional voyage. Here, fellow students and enthusiasts of any level can see tangible manifestations of theoretical tasks, brought to life with the latest web technologies. It's a testament to what can be achieved with the knowledge we accumulate and a guide for those who wish to turn abstract ideas into practical, impactful creations.
 
 ## Technologies
-testing setting v0.1.*
-chore(frontend): moving stuff (pre-release)
+
 ### Frontend
 
 - **NPM**: Node Package Manager for dependency management.
