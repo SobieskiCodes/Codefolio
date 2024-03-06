@@ -1,0 +1,15 @@
+FROM python
+
+WORKDIR /core/websocket
+
+COPY ./core/websocket/requirements.txt ./
+
+RUN pip install --upgrade pip
+
+RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+
+COPY ./core/websocket .
+
+EXPOSE 8050
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8050", "--reload"]
