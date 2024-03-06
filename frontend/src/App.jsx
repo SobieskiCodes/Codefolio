@@ -3,11 +3,13 @@ import { ChakraProvider, Box, Tab, TabList, Tabs, TabPanels, TabPanel, Flex, Spi
 import theme from './theme/theme';
 import './App.css';
 import ColorModeToggle from './components/ColorModeToggle';
+import { WebSocketProvider } from './components/websocket/WebSocketProvider';
 
 const tabData = [
   { name: 'Fishbone', component: React.lazy(() => import('./pages/CPS120/fishbone/FishboneAquatics')) },
   { name: 'Store View', component: React.lazy(() => import('./pages/CPS120/StoreView')) },
   { name: 'Guessing Game', component: React.lazy(() => import('./pages/CPS120/GuessingGame/GuessingGame')) },
+  { name: 'WebSocket', component: React.lazy(() => import('./pages/websocket')) },
 ];
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      <WebSocketProvider>
       <Flex direction="column" h="100vh">
         <Flex justify="space-between" align="center" p={4} w="100%">
           <Box>CPS120 Showcase</Box>
@@ -45,6 +48,7 @@ function App() {
           </TabPanels>
         </Tabs>
       </Flex>
+      </WebSocketProvider>
     </ChakraProvider>
   );
   
