@@ -19,7 +19,7 @@
             "justMyCode": true
         },
         {
-            "name": "Python: FastAPI",
+            "name": "Python: Backend",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/backend/main.py",
@@ -29,6 +29,23 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
             }
+        },
+        {
+            "name": "FastAPI: Websocket",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "websocket:app",
+                "--port",
+                "8050",
+                "--reload"
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "cwd": "${workspaceFolder}/core/websocket"
         }
     ]
 }
