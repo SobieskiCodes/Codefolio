@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Localhost Log Viewer",
+    "version": "1.0",
+    "description": "Creates a WebSocket connection to localhost for log viewing.",
+    "permissions": ["tabs", "webNavigation"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": [
+      "http://localhost/*"
+    ],
+    "action": {
+      "default_popup": "",
+      "default_icon": {
+      }
+    },
+    "icons": {
+    }
+  }
+  
