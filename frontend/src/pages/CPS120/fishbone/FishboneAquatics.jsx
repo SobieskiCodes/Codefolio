@@ -44,21 +44,18 @@ const FishboneAquatics = () => {
 
   return (
     <div className="fishbone">
-      {!isCartVisible && (
-        <>
-          <h1>Fishbone Aquatics</h1>
-          <div className="products">
-            {products.map((product) => (
-              <Product
-                key={product.id}
-                product={product}
-                onAdd={handleAddToCart}
-                onRemove={handleRemoveFromCart}
-              />
-            ))}
-          </div>
-        </>
-      )}
+      <h1>Fishbone Aquatics</h1>
+      <div className="products">
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            product={product}
+            onAdd={handleAddToCart}
+            onRemove={handleRemoveFromCart}
+          />
+        ))}
+      </div>
+
       {isCartVisible && (
         <div className="shopping-cart-display">
           <ShoppingCart
@@ -69,6 +66,7 @@ const FishboneAquatics = () => {
           />
         </div>
       )}
+
       {!isCartVisible && (
         <div className='toggle-cart'>
           <button onClick={toggleCart}>
